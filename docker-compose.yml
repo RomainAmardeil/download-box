@@ -5,7 +5,7 @@ services:
     image: dperson/openvpn-client:latest
     cap_add:
       - net_admin # required to modify network interfaces
-    restart: unless-stopped
+    restart: always
     volumes:
       - /dev/net:/dev/net:z # tun device
       - ${ROOT}/config/vpn:/vpn # OpenVPN configuration
@@ -18,7 +18,7 @@ services:
   deluge:
     container_name: deluge
     image: linuxserver/deluge:latest
-    restart: unless-stopped
+    restart: always
     network_mode: service:vpn # run on the vpn network
     environment:
       - PUID=${PUID} # default user id, defined in .env
@@ -31,7 +31,7 @@ services:
   jackett:
     container_name: jackett
     image: linuxserver/jackett:latest
-    restart: unless-stopped
+    restart: always
     network_mode: host
     environment:
       - PUID=${PUID} # default user id, defined in .env
@@ -45,7 +45,7 @@ services:
   nzbget:
     container_name: nzbget
     image: linuxserver/nzbget:latest
-    restart: unless-stopped
+    restart: always
     network_mode: host
     environment:
       - PUID=${PUID} # default user id, defined in .env
@@ -58,7 +58,7 @@ services:
   sonarr:
     container_name: sonarr
     image: linuxserver/sonarr:latest
-    restart: unless-stopped
+    restart: always
     network_mode: host
     environment:
       - PUID=${PUID} # default user id, defined in .env
@@ -73,7 +73,7 @@ services:
   radarr:
     container_name: radarr
     image: linuxserver/radarr:latest
-    restart: unless-stopped
+    restart: always
     network_mode: host
     environment:
       - PUID=${PUID} # default user id, defined in .env
@@ -88,7 +88,7 @@ services:
   plex-server:
     container_name: plex-server
     image: plexinc/pms-docker:latest
-    restart: unless-stopped
+    restart: always
     environment:
       - TZ=${TZ} # timezone, defined in .env
     network_mode: host
