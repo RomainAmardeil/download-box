@@ -1,0 +1,1 @@
+echo url="https://www.duckdns.org/update?domains=rdmdlbox&token=YOUR_TOKEN&ip=" | curl -k -o ~/download-box/duck.log -K -
